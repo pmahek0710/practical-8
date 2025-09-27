@@ -1,0 +1,8 @@
+create or replace trigger audit_insert
+before delete or insert on audit_t
+begin 
+if rtrim (upper(to_char(sysdate,'day')))='WEDNESDAY' then 
+raise_application_error ( -200000,'cant delete');
+end if;
+end;
+/
